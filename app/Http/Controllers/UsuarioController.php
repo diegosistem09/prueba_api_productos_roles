@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\role;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return Usuario::all();
     }
 
     /**
@@ -24,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,27 +35,29 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = Usuario::create($request->all());
+        return response()->json($usuario, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\role  $role
+     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(role $role)
+    public function show(Usuario $usuario)
     {
-        //
+        
+        return $usuario;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\role  $role
+     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(role $role)
+    public function edit(Usuario $usuario)
     {
         //
     }
@@ -64,22 +66,24 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\role  $role
+     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, role $role)
+    public function update(Request $request, Usuario $usuario)
     {
-        //
+        $usuario->update($request->all());
+        return response()->json($usuario, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\role  $role
+     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(role $role)
+    public function delete(Usuario $usuario)
     {
-        //
+        $usuario->delete();
+        return response()->json(null, 204);
     }
 }
