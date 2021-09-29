@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use DB;
 
 class UsuarioController extends Controller
 {
@@ -45,10 +46,12 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(Usuario $usuario,Request $request)
     {
-        
-        return $usuario;
+        $usuario = $request->nombre;
+        $password = $request->contrasena;
+        $datos_usuario =DB::table('usuarios')->where('contrasena', $password);
+        return $datos_usuario;
     }
 
     /**
